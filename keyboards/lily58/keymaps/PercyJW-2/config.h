@@ -45,6 +45,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define UNICODE_SELECTED_MODES UC_WINC
 
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
+
+#define DISABLE_LEADER
+
+#ifndef NO_DEBUG
+#define NO_DEBUG
+#endif
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#define NO_PRINT
+#endif
+
 // Underglow
 /*
 #undef RGBLED_NUM
