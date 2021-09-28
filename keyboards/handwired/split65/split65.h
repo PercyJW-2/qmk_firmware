@@ -13,8 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef SPLIT65_H
-#define SPLIT65_H
+#pragma once
 
 #include "quantum.h"
 
@@ -23,6 +22,3 @@
 #elif defined(KEYBOARD_handwired_split65_promicro)
     #include "promicro.h"
 #endif
-
-#endif
-

@@ -13,8 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PROMICRO
-#define PROMICRO
+#pragma once 
 
 #include "split65.h"
 
@@ -37,5 +36,3 @@
         {R30, R31, R32, R33, R34, R35, R36, R37}, \
         {R40, R41, R42, R43, R44, R45, R46, R47} \
     }
-
-#endif

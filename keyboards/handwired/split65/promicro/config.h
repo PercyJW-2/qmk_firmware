@@ -15,8 +15,6 @@
  */
 #pragma once
 
-#ifndef PROMICRO_CONFIG_H
-#define PROMICRO_CONFIG_H
 
 #include "config_common.h"
 
@@ -40,7 +38,6 @@
 #define MATRIX_IO_DELAY 5
 
 // Split Keyboard specifics
-#define MASTER_LEFT
 #define SOFT_SERIAL_PIN D3
 #define SELECT_SOFT_SERIAL_SPEED 1
 
@@ -53,4 +50,4 @@
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
 
-#endif
+#define OLED_DISPLAY_128X64

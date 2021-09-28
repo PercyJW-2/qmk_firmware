@@ -14,7 +14,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-#include <stdio.h>
 
 enum layer_names {
     _QWERTY,
@@ -28,36 +27,36 @@ enum layer_names {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-    [_QWERTY] = LAYOUT( \
-        KC_GESC, KC_1,    KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9,    KC_0,   KC_MINS, KC_EQL,  KC_BSPC, KC_INS, \
-        KC_TAB,  KC_Q,    KC_W, KC_E, KC_R, KC_T,       KC_Y, KC_U, KC_I,    KC_O,   KC_P,    KC_LBRC, KC_RBRC, KC_DEL, \
-        KC_LCTL, KC_A,    KC_S, KC_D, KC_F, KC_G,       KC_H, KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT, KC_NUHS, KC_ENT, KC_PGUP, \
-        KC_LSFT, KC_NUBS, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, KC_UP,   KC_PGDN, \
-        KC_LCTL, KC_LGUI, KC_LALT,    KC_SPC,               KC_ENT, KC_RALT, LOWER,  RAISE,   KC_LEFT, KC_DOWN, KC_RGHT \
+    [_QWERTY] = LAYOUT(
+        KC_GESC, KC_1,    KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9,    KC_0,   KC_MINS, KC_EQL,  KC_BSPC, KC_INS,
+        KC_TAB,  KC_Q,    KC_W, KC_E, KC_R, KC_T,       KC_Y, KC_U, KC_I,    KC_O,   KC_P,    KC_LBRC, KC_RBRC, KC_DEL,
+        KC_LCTL, KC_A,    KC_S, KC_D, KC_F, KC_G,       KC_H, KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT, KC_NUHS, KC_ENT, KC_PGUP,
+        KC_LSFT, KC_NUBS, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, KC_UP,   KC_PGDN,
+        KC_LCTL, KC_LGUI, KC_LALT,    KC_SPC,               KC_ENT, KC_RALT, LOWER,  RAISE,   KC_LEFT, KC_DOWN, KC_RGHT
     ),
 
-    [_LOWER] = LAYOUT( \
-        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, \
-        _______, _______, KC_UP,   _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______,          _______,                            _______, _______, _______, _______, _______, _______, _______ \
+    [_LOWER] = LAYOUT(
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______,
+        _______, _______, KC_UP,   _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______,          _______,                            _______, _______, _______, _______, _______, _______, _______
     ),
 
-    [_RAISE] = LAYOUT( \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______,          _______,                            _______, _______, _______, _______, _______, _______, _______ \
+    [_RAISE] = LAYOUT(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______,          _______,                            _______, _______, _______, _______, _______, _______, _______
     ),
 
-    [_ADJUST] = LAYOUT( \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______,          _______,                            _______, _______, _______, _______, _______, _______, _______ \
+    [_ADJUST] = LAYOUT(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______,          _______,                            _______, _______, _______, _______, _______, _______, _______
     )
 };
 
@@ -178,10 +177,10 @@ static void render_status(void) {
     }
 
     // Host Keyboard LED Status
-    uint8_t led_usb_state = host_keyboard_leds();
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK) ? PSTR("NUMLCK ") : PSTR("       "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? PSTR("CAPLCK ") : PSTR("       "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false);
+    led_t led_state = host_keyboard_led_state();
+    oled_write_P(led_state.num_lock ? PSTR("NUMLCK ") : PSTR("       "), false);
+    oled_write_P(led_state.caps_lock ? PSTR("CAPLCK ") : PSTR("       "), false);
+    oled_write_P(led_state.scroll_lock ? PSTR("SCRLCK ") : PSTR("       "), false);
 }
 
 void oled_task_user(void) {
@@ -192,38 +191,3 @@ void oled_task_user(void) {
     }
 }
 #endif
-/*
-#ifdef OLED_DRIVER_ENABLE
-
-// When you add source files to SRC in rules.mk, you can use functions.
-const char *read_layer_state(void);
-const char *read_logo(void);
-uint8_t get_current_wpm(void);
-void set_keylog(uint16_t keycode, keyrecord_t *record);
-const char *read_keylog(void);
-const char *read_keylogs(void);
-
-void oeld_task_user(void) {
-    if (is_keyboard_master()) {
-        oled_write_ln(read_layer_state(), false);
-        oled_write_ln(read_keylog(), false);
-        oled_write_ln(read_keylogs(), false);
-
-        char wpm_str[12]={};
-	    sprintf(wpm_str,"WPM: %d", get_current_wpm());
-	    oled_write_ln(wpm_str, false);
-    } else {
-        oled_write(read_logo(), false);
-    }
-}
-#endif
-*/
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        #ifdef OLERD_DRIVER_ENABLE
-        set_keylog(keycode, record)
-        #endif
-    }
-    return true;
-}
