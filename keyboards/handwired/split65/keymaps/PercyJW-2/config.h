@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 // Select hand configuration
-#define MASTER_LEFT
-// #define MASTER_RIGHT
+// #define MASTER_LEFT
+#define MASTER_RIGHT
 
 // OLED Settings
 #ifdef OLED_DRIVER_ENABLE
@@ -31,5 +31,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Audio Settings
 #ifdef AUDIO_ENABLE
-    #define AUDIO_DAC_SAMPLE_MAX 4095U
+    //#define AUDIO_DAC_SAMPLE_MAX 4095U
+    #define AUDIO_CLICKY
 #endif

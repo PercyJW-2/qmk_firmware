@@ -29,18 +29,18 @@ enum layer_names {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_QWERTY] = LAYOUT( \
-        KC_GESC, KC_1,    KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9,    KC_0,   KC_GRV, KC_EQL,  KC_BSPC, KC_PSCR, \
-        KC_TAB,  KC_Q,    KC_W, KC_E, KC_R, KC_T,       KC_Z, KC_U, KC_I,    KC_O,   KC_P,    KC_LBRC, KC_RBRC, KC_DEL, \
-        KC_LCTL, KC_A,    KC_S, KC_D, KC_F, KC_G,       KC_H, KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT, KC_MINS, KC_ENT, KC_PGUP, \
-        KC_LSFT, KC_NUHS, KC_Y, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, KC_UP,   KC_PGDN, \
-        LOWER  , KC_LGUI, KC_LALT,    KC_SPC,               KC_ENT, KC_BSPC, KC_RALT,  RAISE, KC_LEFT, KC_DOWN, KC_RGHT \
+        KC_GESC, KC_1,    KC_2,    KC_3, KC_4,   KC_5, KC_6, KC_7, KC_8,   KC_9,    KC_0,     KC_GRV, KC_EQL,  KC_BSPC, KC_PSCR, \
+        KC_TAB,  KC_Q,    KC_W,    KC_E, KC_R,   KC_T,       KC_Z, KC_U,   KC_I,    KC_O,     KC_P,    KC_LBRC, KC_RBRC, KC_DEL, \
+        KC_LCTL, KC_A,    KC_S,    KC_D, KC_F,   KC_G,       KC_H, KC_J,   KC_K,    KC_L,     KC_SCLN, KC_QUOT, KC_MINS, KC_ENT, KC_PGUP, \
+        KC_LSFT, KC_NUHS, KC_Y,    KC_X, KC_C,   KC_V, KC_B, KC_N, KC_M,   KC_COMM, KC_DOT,   KC_SLSH, KC_RSFT, KC_UP,   KC_PGDN, \
+        LOWER  , KC_LGUI, KC_LALT,       KC_SPC,                   KC_ENT, KC_BSPC, KC_RALT,  RAISE, KC_LEFT, KC_DOWN, KC_RGHT \
     ),
 
     [_LOWER] = LAYOUT( \
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, \
         _______, KC_PGUP, KC_UP,  KC_PGDN, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, \
         _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, NK_TOGG, MU_TOG , CK_TOGG, _______, _______, _______, _______, _______, \
         _______, _______, _______,          _______,                            _______, _______, _______, _______, _______, _______, _______ \
     ),
 
@@ -64,8 +64,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
-
-// OLED Code copied from https://github.com/qmk/qmk_firmware/blob/master/keyboards/kyria/keymaps/default/keymap.c
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -156,8 +154,10 @@ static void render_qmk_logo(void) {
 static void render_status(void) {
     // QMK Logo and version information
     render_qmk_logo();
-    oled_write_P(PSTR("Split65\n\n"), false);
-
+    oled_write_P(PSTR("Split65\n"), false);
+    char wpm_str[12]= {};
+    sprintf(wpm_str, "WPM: %d\n", get_current_wpm());
+    oled_write_P(PSTR(wpm_str), false);
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
@@ -192,38 +192,3 @@ void oled_task_user(void) {
     }
 }
 #endif
-/*
-#ifdef OLED_DRIVER_ENABLE
-
-// When you add source files to SRC in rules.mk, you can use functions.
-const char *read_layer_state(void);
-const char *read_logo(void);
-uint8_t get_current_wpm(void);
-void set_keylog(uint16_t keycode, keyrecord_t *record);
-const char *read_keylog(void);
-const char *read_keylogs(void);
-
-void oeld_task_user(void) {
-    if (is_keyboard_master()) {
-        oled_write_ln(read_layer_state(), false);
-        oled_write_ln(read_keylog(), false);
-        oled_write_ln(read_keylogs(), false);
-
-        char wpm_str[12]={};
-	    sprintf(wpm_str,"WPM: %d", get_current_wpm());
-	    oled_write_ln(wpm_str, false);
-    } else {
-        oled_write(read_logo(), false);
-    }
-}
-#endif
-*/
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        #ifdef OLERD_DRIVER_ENABLE
-        set_keylog(keycode, record)
-        #endif
-    }
-    return true;
-}
